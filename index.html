@@ -15,48 +15,51 @@
     <header class="jumbotron bg-dark">
         <h1 class="display-5 text-center font-weight-2 text-white">Weather Dashboard</h1>
     </header>
-    <div class="wrapper d-flex flex-row" >
+    <div class="wrapper d-flex flex-row mx-5" >
         <aside>
-            <h1>Search for a City:</h1>
+            <h1 id="search_bar">Search for a City:</h1>
             <input>
         </aside>  
-        <main class="container d-flex flex-column">
-            <section class="today mb-1">
-                <h1>City</h1>
+        <main class="container d-flex flex-column ml-5">
+            <section class="today mb-5 px-2">
+                <h1 id="current-city">City</h1>
                 <p>Humidity</p>
                 <p>Wind Speed</p>
                 <p>UV Index</p>
             </section>
-            <section class="week d-flex flex-row">
-                <div class="weekday">
-                    <h1>City</h1>
-                    <p>Humidity</p>
-                    <p>Wind Speed</p>
-                    <p>UV Index</p>
-                </div>
-                <div class="weekday">
-                    <h1>City</h1>
-                    <p>Humidity</p>
-                    <p>Wind Speed</p>
-                    <p>UV Index</p>
-                </div>
-                <div class="weekday">
-                    <h1>City</h1>
-                    <p>Humidity</p>
-                    <p>Wind Speed</p>
-                    <p>UV Index</p>
-                </div>
-                <div class="weekday">
-                    <h1>City</h1>
-                    <p>Humidity</p>
-                    <p>Wind Speed</p>
-                    <p>UV Index</p>
-                </div>
-                <div class="weekday">
-                    <h1>City</h1>
-                    <p>Humidity</p>
-                    <p>Wind Speed</p>
-                    <p>UV Index</p>
+            <section>
+                <h1 id="week-header">5-Day Forecast:</h1>
+                <div class="week d-flex flex-row">
+                    <div class="weekday">
+                        <h1 class="weekday-date">Date</h1>
+                        <p>Humidity</p>
+                        <p>Wind Speed</p>
+                        <p>UV Index</p>
+                    </div>
+                    <div class="weekday ml-5">
+                        <h1 class="weekday-date">Date</h1>
+                        <p>Humidity</p>
+                        <p>Wind Speed</p>
+                        <p>UV Index</p>
+                    </div>
+                    <div class="weekday ml-5">
+                        <h1 class="weekday-date">Date</h1>
+                        <p>Humidity</p>
+                        <p>Wind Speed</p>
+                        <p>UV Index</p>
+                    </div>
+                    <div class="weekday ml-5">
+                        <h1 class="weekday-date">Date</h1>
+                        <p>Humidity</p>
+                        <p>Wind Speed</p>
+                        <p>UV Index</p>
+                    </div>
+                    <div class="weekday ml-5">
+                        <h1 class="weekday-date">Date</h1>
+                        <p>Humidity</p>
+                        <p>Wind Speed</p>
+                        <p>UV Index</p>
+                    </div>
                 </div>
             </section>   
         </main>
