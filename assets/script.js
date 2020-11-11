@@ -13,3 +13,34 @@
 // THEN I am presented with the last searched city forecast
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+var searchButton = $('#buttonSearch');
+var citySearch = $('#citySearch');
+var submittedSearch = "";
+
+searchButton.click(function(event) {
+    event.preventDefault();
+    var desiredCity = citySearch.submit();
+
+    submittedSearch.concat(desiredCity.val());
+
+    $('#cityHistory').text(citySearch.val());
+
+    
+});
+
+console.log(submittedSearch);
+
+// var search = submittedSearch.val().toLowerCase();
+
+//     var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
+//     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ search +"&appid=" + APIKey;
+
+    // console.log(search);
+
+    // $.ajax({
+    //     url: queryURL,
+    //     method: "GET"
+    // }).then(function(response){
+    //     console.log(response);
+    //     findUVIndex(response.city.coord.lat, response.city.coord.lon, response);
+    // })  
