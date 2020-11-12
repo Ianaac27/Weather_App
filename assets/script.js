@@ -30,9 +30,10 @@ searchButton.click(function createSearch(event) {
 
     displayCurrentInfo();
     displayUVInfo();
+    displayWeeklyForecast();
  });
 
-
+//Display current information based on search
   function displayCurrentInfo() {
 
    for (i = 0; i < search.length; i++) { 
@@ -51,13 +52,13 @@ searchButton.click(function createSearch(event) {
             $('#tempToday').text("Temperature: " + response.main.temp);
             $('#humToday').text("Humidity: " + response.main.humidity);
             $('#wind-speed').text("Wind Speed: " + response.wind.speed);
-            // $('#uv').text(response.city.name);
          }) 
 
         }
   }
 
-  function displayUVInfo() {
+//Display UV Index
+function displayUVInfo() {
 
     for (i = 0; i < search.length; i++) { 
       var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
@@ -82,4 +83,52 @@ searchButton.click(function createSearch(event) {
          })
         })
     }
-  }
+}
+
+  //Display 5-Day forecast
+
+  function displayWeeklyForecast() {
+
+    for (i = 0; i < search.length; i++) { 
+      var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
+      var queryURLF = "http://api.openweathermap.org/data/2.5/forecast?q=" + search[i] +"&appid=" + APIKey;
+ 
+     console.log(queryURLF);
+ 
+        $.ajax({
+            url: queryURLF,
+            method: "GET"
+        }).then(function(response){
+            console.log(response);
+            //Day 1
+            //use moment.js for date
+             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#temp1').text("Temp: " + response.list[4].main.temp);
+             $('#hum1').text("Humidity: " + response.list[4].main.humidity);
+            
+            //Day 2
+            //use moment.js for date
+             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#temp2').text("Temp: " + response.list[12].main.temp);
+             $('#hum2').text("Humidity: " + response.list[12].main.humidity);
+             
+             //Day 3
+             //use moment.js for date
+             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#temp3').text("Temp: " + response.list[20].main.temp);
+             $('#hum3').text("Humidity: " + response.list[20].main.humidity);
+             
+             //Day 4
+             //use moment.js for date
+             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#temp4').text("Temp: " + response.list[28].main.temp);
+             $('#hum4').text("Humidity: " + response.list[28].main.humidity);
+             
+             //Day 5
+             //use moment.js for date
+             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#temp5').text("Temp: " + response.list[36].main.temp);
+             $('#hum5').text("Humidity: " + response.list[36].main.humidity);
+          }) 
+         }
+   }
