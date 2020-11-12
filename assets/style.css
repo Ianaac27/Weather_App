@@ -17,3 +17,40 @@
 p {
     font-size: 13px;
 }
+
+/* UV Index colors */
+
+.extreme {
+    background-color: #6702a1;
+    color: white;
+    width: 100px;
+    padding-left: 6px;
+}
+
+.very-high {
+    background-color: #cc0404;
+    color: white;
+    width: 100px;
+    padding-left: 6px;
+}
+
+.high {
+    background-color: #c99403;
+    color: white;
+    width: 100px;
+    padding-left: 6px;
+}
+
+.moderate {
+    background-color: #deeb2b;
+    color: white;
+    width: 100px;
+    padding-left: 6px;
+}
+
+.low {
+    background-color: #0dd80d;
+    color: white;
+    width: 100px;
+    padding-left: 6px;
+}

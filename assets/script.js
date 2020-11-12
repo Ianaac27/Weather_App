@@ -80,6 +80,27 @@ function displayUVInfo() {
         }).then(function(response){
             console.log(response);
             $('#uv').text("UV Index: " + response.value);
+
+            //Colors based on UV Index Scale
+            if (response.value >= 11 ) {
+                $('#uv').addClass("extreme");  
+            }
+
+            else if (response.value < 11 && response.value >= 8 ) {
+                $('#uv').addClass("very-high");  
+            }
+
+            else if (response.value < 8 && response.value >= 6 ) {
+                $('#uv').addClass("high");  
+            }
+
+            else if (response.value < 6 && response.value >= 3 ) {
+                $('#uv').addClass("moderate");  
+            }
+
+            else {
+                $('#uv').addClass("low");  
+            }
          })
         })
     }
