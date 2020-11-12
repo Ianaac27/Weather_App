@@ -28,15 +28,16 @@ searchButton.click(function createSearch(event) {
 
     console.log(search);
 
-    displayCurrent();
+    displayCurrentInfo();
+    displayUVInfo();
  });
 
 
-  function displayCurrent() {
+  function displayCurrentInfo() {
 
    for (i = 0; i < search.length; i++) { 
      var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
-     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ search[i] +"&appid=" + APIKey;
+     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+ search[i] +"&appid=" + APIKey;
 
     console.log(queryURL);
 
@@ -45,12 +46,40 @@ searchButton.click(function createSearch(event) {
            method: "GET"
        }).then(function(response){
            console.log(response);
-           $('#current-city').text(response.city.name); //use moment.js for date
-           $('#tempToday').text(response.list[0].main.temp);
-           $('#humToday').text(response.list[0].main.humidity);
-           $('#wind-speed').text(response.list[0].wind.speed);
-           $('#uv').text(response.city.name);
+            $('#current-city').text(response.name); //use moment.js for date
+            // $('#icon').text(response.weather.icon);  Find a way to display icon
+            $('#tempToday').text("Temperature: " + response.main.temp);
+            $('#humToday').text("Humidity: " + response.main.humidity);
+            $('#wind-speed').text("Wind Speed: " + response.wind.speed);
+            // $('#uv').text(response.city.name);
          }) 
 
         }
+  }
+
+  function displayUVInfo() {
+
+    for (i = 0; i < search.length; i++) { 
+      var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
+      var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+ search[i] +"&appid=" + APIKey;
+ 
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response){
+            console.log(response);
+
+        var queryURLUV = "http://api.openweathermap.org/data/2.5/uvi?lat=" + (response.coord.lat) +"&lon=" + (response.coord.lon) + "&appid=" + APIKey;
+
+        console.log(queryURLUV);
+
+        $.ajax({
+            url: queryURLUV,
+            method: "GET"
+        }).then(function(response){
+            console.log(response);
+            $('#uv').text("UV Index: " + response.value);
+         })
+        })
+    }
   }
