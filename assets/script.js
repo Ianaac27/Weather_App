@@ -18,13 +18,18 @@ var citySearch = $('#citySearch');
 var search = [];
 
 searchButton.click(function createSearch(event) {
-    // event.preventDefault();
+    event.preventDefault();
     var submittedSearch = citySearch.submit();
     var userChoice = submittedSearch.val().toLowerCase();
 
     search.push(userChoice);
 
-    $('#cityHistory').text(citySearch.val()); //make a button, display local storage
+    var searchedCity = $('<li>').addClass('searched-city').text(citySearch.val());
+    $('#cityHistory').prepend(searchedCity);
+
+    if ( $('searched-city') == citySearch.val()) {
+        alert("You have picked this city");
+    }
 
     console.log(search);
 

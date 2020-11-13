@@ -22,6 +22,21 @@ p {
     font-size: 13px;
 }
 
+.searched-city {
+    list-style: none;
+    background-color: rgb(192, 191, 191);
+    color: white;
+    padding: 5px;
+    padding-left: 5px;
+    border: rgb(136, 136, 136);
+    border-style: solid;
+    margin-right: 10px;
+}
+
+.searched-city:hover {
+    opacity: .5;
+}
+
 /* UV Index colors */
 
 .extreme {
