@@ -24,6 +24,7 @@ searchButton.click(function createSearch(event) {
 
     search.push(userChoice);
 
+    //Adding to search history
     var searchedCity = $('<li>').addClass('searched-city').text(citySearch.val());
     $('#cityHistory').prepend(searchedCity);
 
@@ -61,13 +62,19 @@ searchButton.click(function createSearch(event) {
            var tempFah = ((response.main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
 
            //Display info to page
-            $('#current-city').text(response.name); //use moment.js for date
-            $('#current-icon').attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
-            $('#tempToday').text("Temperature: " + tempFah + " ℉");
-            $('#humToday').text("Humidity: " + response.main.humidity + "%");
-            $('#wind-speed').text("Wind Speed: " + response.wind.speed + " MPH");
-         }) 
+          $('#current-city').text(response.name); //use moment.js for date
+          $('#current-icon').attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
+          $('#tempToday').text("Temperature: " + tempFah + " ℉");
+          $('#humToday').text("Humidity: " + response.main.humidity + "%");
+          $('#wind-speed').text("Wind Speed: " + response.wind.speed + " MPH");
 
+          
+         localStorage.setItem('currentCity', response.name);
+         localStorage.setItem('currentIcon', "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
+         localStorage.setItem('tempToday', "Temperature: " + tempFah + " ℉");
+         localStorage.setItem('humToday', "Humidity: " + response.main.humidity + "%");
+         localStorage.setItem('wind', "Wind Speed: " + response.wind.speed + " MPH");
+         }) 
         }
   }
 
@@ -115,6 +122,8 @@ function displayUVInfo() {
             else {
                 $('#uv').addClass("low");  
             }
+
+            localStorage.setItem('UV', "UV Index: " + response.value);
          })
         })
     }
@@ -151,30 +160,50 @@ function displayUVInfo() {
              $('#icon-one').attr("src", "https://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png");
              $('#temp1').text("Temp: " + tempFah1 + " ℉");
              $('#hum1').text("Humidity: " + response.list[4].main.humidity + "%");
+
+            localStorage.setItem('icon1', "https://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png");
+            localStorage.setItem('temp1', "Temp: " + tempFah1 + " ℉");
+            localStorage.setItem('hum1', "Humidity: " + response.list[4].main.humidity + "%");
             
             //Day 2
              $("#date-two").text(currentMoment.add(1, 'days').format('l'));
              $('#icon-two').attr("src", "https://openweathermap.org/img/w/" + response.list[12].weather[0].icon + ".png");
              $('#temp2').text("Temp: " + tempFah2 + " ℉");
              $('#hum2').text("Humidity: " + response.list[12].main.humidity + "%");
+
+            localStorage.setItem('icon2', "https://openweathermap.org/img/w/" + response.list[12].weather[0].icon + ".png");
+            localStorage.setItem('temp2', "Temp: " + tempFah2 + " ℉");
+            localStorage.setItem('hum2', "Humidity: " + response.list[12].main.humidity + "%");
              
              //Day 3
              $("#date-three").text(currentMoment.add(1, 'days').format('l'));
              $('#icon-three').attr("src", "https://openweathermap.org/img/w/" + response.list[20].weather[0].icon + ".png");
              $('#temp3').text("Temp: " + tempFah3 + " ℉");
              $('#hum3').text("Humidity: " + response.list[20].main.humidity + "%");
+
+            localStorage.setItem('icon3', "https://openweathermap.org/img/w/" + response.list[20].weather[0].icon + ".png");
+            localStorage.setItem('temp3', "Temp: " + tempFah3 + " ℉");
+            localStorage.setItem('hum3', "Humidity: " + response.list[20].main.humidity + "%");
              
              //Day 4
              $("#date-four").text(currentMoment.add(1, 'days').format('l'));
              $('#icon-four').attr("src", "https://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png");
              $('#temp4').text("Temp: " + tempFah4 + " ℉");
              $('#hum4').text("Humidity: " + response.list[28].main.humidity + "%");
+
+            localStorage.setItem('icon4', "https://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png");
+            localStorage.setItem('temp4', "Temp: " + tempFah4 + " ℉");
+            localStorage.setItem('hum4', "Humidity: " + response.list[28].main.humidity + "%");
              
              //Day 5
              $("#date-five").text(currentMoment.add(1, 'days').format('l'));
              $('#icon-five').attr("src", "https://openweathermap.org/img/w/" + response.list[36].weather[0].icon + ".png");
              $('#temp5').text("Temp: " + tempFah5 + " ℉");
              $('#hum5').text("Humidity: " + response.list[36].main.humidity + "%");
+
+            localStorage.setItem('icon5', "https://openweathermap.org/img/w/" + response.list[36].weather[0].icon + ".png");
+            localStorage.setItem('temp5', "Temp: " + tempFah5 + " ℉");
+            localStorage.setItem('hum5', "Humidity: " + response.list[36].main.humidity + "%");
           }) 
          }
    }
