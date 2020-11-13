@@ -17,6 +17,7 @@ var searchButton = $('#buttonSearch');
 var citySearch = $('#citySearch');
 var search = [];
 
+//Search function
 searchButton.click(function createSearch(event) {
     event.preventDefault();
     var submittedSearch = citySearch.submit();
@@ -24,13 +25,11 @@ searchButton.click(function createSearch(event) {
 
     search.push(userChoice);
 
-    //Adding to search history
+    //Adding search to search history
     var searchedCity = $('<li>').addClass('searched-city').text(citySearch.val());
     $('#cityHistory').prepend(searchedCity);
 
-    if ( $('searched-city') == citySearch.val()) {
-        alert("You have picked this city");
-    }
+    localStorage.setItem('searchedCity', searchedCity);
 
     console.log(search);
 
@@ -207,3 +206,65 @@ function displayUVInfo() {
           }) 
          }
    }
+
+//Get Local Storage
+   window.onload = function() {
+    //button
+    var getButton = localStorage.getItem('searchedCity', searchedCity);
+    $('#cityHistory').prepend(getButton);
+
+    //Get current info
+    var getCity = localStorage.getItem('currentCity', response.name);
+    $('#current-city').text(getCity);
+    var getIcon = localStorage.getItem('currentIcon', "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
+    $('#current-icon').attr("src", getIcon);
+    var getTemp = localStorage.getItem('tempToday', "Temperature: " + tempFah + " ℉");
+    $('#tempToday').text(getTemp);
+    var getHum = localStorage.getItem('humToday', "Humidity: " + response.main.humidity + "%");
+    $('#humToday').text(getHum);
+    var getWind = localStorage.getItem('wind', "Wind Speed: " + response.wind.speed + " MPH");
+    $('#wind-speed').text(getWind);
+    var getUV = localStorage.getItem('UV', "UV Index: " + response.value);
+    $('#uv').text(getUV);
+
+    //Get Forecast
+    //Day 1
+    var getIcon1 = localStorage.getItem('icon1', "https://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png");
+    $('#icon-one').attr("src", getIcon1);
+    var getTemp1 = localStorage.getItem('temp1', "Temp: " + tempFah1 + " ℉");
+    $('#temp1').text(getTemp1);
+    var getHum1 = localStorage.getItem('hum1', "Humidity: " + response.list[4].main.humidity + "%");
+    $('#hum1').text(getHum1);
+
+    //Day 2
+    var getIcon2 = localStorage.getItem('icon2', "https://openweathermap.org/img/w/" + response.list[12].weather[0].icon + ".png");
+    $('#icon-two').attr("src", getIcon2);
+    var getTemp2 = localStorage.getItem('temp2', "Temp: " + tempFah2 + " ℉");
+    $('#temp2').text(getTemp2);
+    var getHum2 = localStorage.getItem('hum2', "Humidity: " + response.list[12].main.humidity + "%");
+    $('#hum2').text(getHum2);
+
+    //Day 3
+    var getIcon3 = localStorage.getItem('icon3', "https://openweathermap.org/img/w/" + response.list[20].weather[0].icon + ".png");
+    $('#icon-three').attr("src", getIcon3);
+    var getTemp3 = localStorage.getItem('temp3', "Temp: " + tempFah3 + " ℉");
+    $('#temp3').text(getTemp3);
+    var getHum3 = localStorage.getItem('hum3', "Humidity: " + response.list[20].main.humidity + "%");
+    $('#hum3').text(getHum3);
+
+    //Day 4
+    var getIcon4 = localStorage.getItem('icon4', "https://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png");
+    $('#icon-four').attr("src", getIcon4);
+    var getTemp4 = localStorage.getItem('temp4', "Temp: " + tempFah4 + " ℉");
+    $('#temp4').text(getTemp4);
+    var getHum4 = localStorage.getItem('hum4', "Humidity: " + response.list[28].main.humidity + "%");
+    $('#hum4').text(getHum4);
+
+    //Day 5
+    var getIcon5 = localStorage.getItem('icon5', "https://openweathermap.org/img/w/" + response.list[36].weather[0].icon + ".png");
+    $('#icon-five').attr("src", getIcon5);
+    var getTemp5 = localStorage.getItem('temp5', "Temp: " + tempFah5 + " ℉");
+    $('#temp5').text(getTemp5);
+    var getHum5 = localStorage.getItem('hum5', "Humidity: " + response.list[36].main.humidity + "%");
+    $('#hum5').text(getHum5);
+}
