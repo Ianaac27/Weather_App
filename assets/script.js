@@ -47,11 +47,15 @@ searchButton.click(function createSearch(event) {
            method: "GET"
        }).then(function(response){
            console.log(response);
+           //Temp conversion
+           var tempFah = ((response.main.temp - 273) * 9 / 5 + 32).toFixed(1);
+
+           //Display info to page
             $('#current-city').text(response.name); //use moment.js for date
-            // $('#icon').text(response.weather.icon);  Find a way to display icon
-            $('#tempToday').text("Temperature: " + response.main.temp);
-            $('#humToday').text("Humidity: " + response.main.humidity);
-            $('#wind-speed').text("Wind Speed: " + response.wind.speed);
+            $('#icon').text(response.weather.icon);  //Find a way to display icon
+            $('#tempToday').text("Temperature: " + tempFah + " ℉");
+            $('#humToday').text("Humidity: " + response.main.humidity + "%");
+            $('#wind-speed').text("Wind Speed: " + response.wind.speed + " MPH");
          }) 
 
         }
@@ -121,35 +125,42 @@ function displayUVInfo() {
             method: "GET"
         }).then(function(response){
             console.log(response);
+            //Temp conversions
+            var tempFah1 = ((response.list[4].main.temp - 273) * 9 / 5 + 32).toFixed(1);
+            var tempFah2 = ((response.list[12].main.temp - 273) * 9 / 5 + 32).toFixed(1);
+            var tempFah3 = ((response.list[20].main.temp - 273) * 9 / 5 + 32).toFixed(1);
+            var tempFah4 = ((response.list[28].main.temp - 273) * 9 / 5 + 32).toFixed(1);
+            var tempFah5 = ((response.list[36].main.temp - 273) * 9 / 5 + 32).toFixed(1);
+
             //Day 1
             //use moment.js for date
              // $('#icon').text(response.weather.icon);  Find a way to display icon
-             $('#temp1').text("Temp: " + response.list[4].main.temp);
-             $('#hum1').text("Humidity: " + response.list[4].main.humidity);
+             $('#temp1').text("Temp: " + tempFah1 + " ℉");
+             $('#hum1').text("Humidity: " + response.list[4].main.humidity + "%");
             
             //Day 2
             //use moment.js for date
              // $('#icon').text(response.weather.icon);  Find a way to display icon
-             $('#temp2').text("Temp: " + response.list[12].main.temp);
-             $('#hum2').text("Humidity: " + response.list[12].main.humidity);
+             $('#temp2').text("Temp: " + tempFah2 + " ℉");
+             $('#hum2').text("Humidity: " + response.list[12].main.humidity + "%");
              
              //Day 3
              //use moment.js for date
              // $('#icon').text(response.weather.icon);  Find a way to display icon
-             $('#temp3').text("Temp: " + response.list[20].main.temp);
-             $('#hum3').text("Humidity: " + response.list[20].main.humidity);
+             $('#temp3').text("Temp: " + tempFah3 + " ℉");
+             $('#hum3').text("Humidity: " + response.list[20].main.humidity + "%");
              
              //Day 4
              //use moment.js for date
              // $('#icon').text(response.weather.icon);  Find a way to display icon
-             $('#temp4').text("Temp: " + response.list[28].main.temp);
-             $('#hum4').text("Humidity: " + response.list[28].main.humidity);
+             $('#temp4').text("Temp: " + tempFah4 + " ℉");
+             $('#hum4').text("Humidity: " + response.list[28].main.humidity + "%");
              
              //Day 5
              //use moment.js for date
              // $('#icon').text(response.weather.icon);  Find a way to display icon
-             $('#temp5').text("Temp: " + response.list[36].main.temp);
-             $('#hum5').text("Humidity: " + response.list[36].main.humidity);
+             $('#temp5').text("Temp: " + tempFah5 + " ℉");
+             $('#hum5').text("Humidity: " + response.list[36].main.humidity + "%");
           }) 
          }
    }
