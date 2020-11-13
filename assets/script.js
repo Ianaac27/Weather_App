@@ -52,6 +52,11 @@ searchButton.click(function createSearch(event) {
            method: "GET"
        }).then(function(response){
            console.log(response);
+           
+           //Display current date in header
+           var currentMoment = moment();
+           $("#current-date").text("(" + currentMoment.add(0, 'days').calendar() + ")");
+
            //Temp conversion
            var tempFah = ((response.main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
 
@@ -130,6 +135,10 @@ function displayUVInfo() {
             method: "GET"
         }).then(function(response){
             console.log(response);
+
+            //Set weekly dates
+            var currentMoment = moment();
+
             //Temp conversions
             var tempFah1 = ((response.list[4].main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
             var tempFah2 = ((response.list[12].main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
@@ -138,31 +147,31 @@ function displayUVInfo() {
             var tempFah5 = ((response.list[36].main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
 
             //Day 1
-            //use moment.js for date
+             $("#date-one").text(currentMoment.add(1, 'days').calendar());
              $('#icon-one').attr("src", "https://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png");
              $('#temp1').text("Temp: " + tempFah1 + " ℉");
              $('#hum1').text("Humidity: " + response.list[4].main.humidity + "%");
             
             //Day 2
-            //use moment.js for date
+             $("#date-two").text(currentMoment.add(2, 'days').calendar());
              $('#icon-two').attr("src", "https://openweathermap.org/img/w/" + response.list[12].weather[0].icon + ".png");
              $('#temp2').text("Temp: " + tempFah2 + " ℉");
              $('#hum2').text("Humidity: " + response.list[12].main.humidity + "%");
              
              //Day 3
-             //use moment.js for date
+             $("#date-three").text(currentMoment.add(3, 'days').calendar());
              $('#icon-three').attr("src", "https://openweathermap.org/img/w/" + response.list[20].weather[0].icon + ".png");
              $('#temp3').text("Temp: " + tempFah3 + " ℉");
              $('#hum3').text("Humidity: " + response.list[20].main.humidity + "%");
              
              //Day 4
-             //use moment.js for date
+             $("#date-four").text(currentMoment.add(4, 'days').calendar());
              $('#icon-four').attr("src", "https://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png");
              $('#temp4').text("Temp: " + tempFah4 + " ℉");
              $('#hum4').text("Humidity: " + response.list[28].main.humidity + "%");
              
              //Day 5
-             //use moment.js for date
+             $("#date-five").text(currentMoment.add(5, 'days').calendar());
              $('#icon-five').attr("src", "https://openweathermap.org/img/w/" + response.list[36].weather[0].icon + ".png");
              $('#temp5').text("Temp: " + tempFah5 + " ℉");
              $('#hum5').text("Humidity: " + response.list[36].main.humidity + "%");
