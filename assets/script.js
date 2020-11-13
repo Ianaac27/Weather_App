@@ -1,16 +1,16 @@
 // GIVEN a weather dashboard with form inputs
 // WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
+// THEN I am presented with current and future conditions for that city and that city is added to the search history----------- CHECK
 // WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index--------CHECK
 // WHEN I view the UV index
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
+// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe----------------------CHECK
 // WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
+// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity-----------------CHECK
 // WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city
+// THEN I am again presented with current and future conditions for that city----------------------NOT YET
 // WHEN I open the weather dashboard
-// THEN I am presented with the last searched city forecast
+// THEN I am presented with the last searched city forecast-----------------------------NOT YET
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 var searchButton = $('#buttonSearch');
@@ -55,7 +55,7 @@ searchButton.click(function createSearch(event) {
            
            //Display current date in header
            var currentMoment = moment();
-           $("#current-date").text("(" + currentMoment.add(0, 'days').calendar() + ")");
+           $("#current-date").text("(" + currentMoment.format('l') + ")");
 
            //Temp conversion
            var tempFah = ((response.main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
@@ -147,31 +147,31 @@ function displayUVInfo() {
             var tempFah5 = ((response.list[36].main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
 
             //Day 1
-             $("#date-one").text(currentMoment.add(1, 'days').calendar());
+             $("#date-one").text(currentMoment.add(1, 'days').format('l'));
              $('#icon-one').attr("src", "https://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png");
              $('#temp1').text("Temp: " + tempFah1 + " ℉");
              $('#hum1').text("Humidity: " + response.list[4].main.humidity + "%");
             
             //Day 2
-             $("#date-two").text(currentMoment.add(2, 'days').calendar());
+             $("#date-two").text(currentMoment.add(1, 'days').format('l'));
              $('#icon-two').attr("src", "https://openweathermap.org/img/w/" + response.list[12].weather[0].icon + ".png");
              $('#temp2').text("Temp: " + tempFah2 + " ℉");
              $('#hum2').text("Humidity: " + response.list[12].main.humidity + "%");
              
              //Day 3
-             $("#date-three").text(currentMoment.add(3, 'days').calendar());
+             $("#date-three").text(currentMoment.add(1, 'days').format('l'));
              $('#icon-three').attr("src", "https://openweathermap.org/img/w/" + response.list[20].weather[0].icon + ".png");
              $('#temp3').text("Temp: " + tempFah3 + " ℉");
              $('#hum3').text("Humidity: " + response.list[20].main.humidity + "%");
              
              //Day 4
-             $("#date-four").text(currentMoment.add(4, 'days').calendar());
+             $("#date-four").text(currentMoment.add(1, 'days').format('l'));
              $('#icon-four').attr("src", "https://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png");
              $('#temp4').text("Temp: " + tempFah4 + " ℉");
              $('#hum4').text("Humidity: " + response.list[28].main.humidity + "%");
              
              //Day 5
-             $("#date-five").text(currentMoment.add(5, 'days').calendar());
+             $("#date-five").text(currentMoment.add(1, 'days').format('l'));
              $('#icon-five').attr("src", "https://openweathermap.org/img/w/" + response.list[36].weather[0].icon + ".png");
              $('#temp5').text("Temp: " + tempFah5 + " ℉");
              $('#hum5').text("Humidity: " + response.list[36].main.humidity + "%");
