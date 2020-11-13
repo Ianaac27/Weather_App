@@ -26,40 +26,58 @@
         </aside>  
         <main class="container d-flex flex-column ml-4">
             <section id= "cityInfo" class="today mb-5 px-3 py-4 border rounded">
-                <h1 id="current-city">City</h1>
-                <img id="icon">
-                <p id="tempToday">Temperature:</p>
-                <p id="humToday">Humidity:</p>
-                <p id="wind-speed">Wind Speed:</p>
-                <p id="uv">UV Index:</p>
+                <div class="city-header d-flex flex-row">
+                    <h1 id="current-city" class="city mr-2">City</h1>
+                    <h2 id="current-date" class="date">(Date)</h2>
+                    <img id="current-icon" class="icon ml-4">
+                </div>
+                    <p id="tempToday">Temperature:</p>
+                    <p id="humToday">Humidity:</p>
+                    <p id="wind-speed">Wind Speed:</p>
+                    <p id="uv">UV Index:</p>
             </section>
             <section>
                 <h1 id="week-header">5-Day Forecast:</h1>
                 <div id="week" class="week d-flex flex-row">
                     <div class="weekday rounded bg-primary text-white px-3 py-2">
-                        <h1 class="weekday-date">Date</h1>
-                        <p id="temp1">Temp:</p>
-                        <p id="hum1">Humidity:</p>
+                        <div class="city-header d-flex flex-row">
+                            <h1 id="date-one" class="date">Date</h1>
+                            <img id="icon-one" class="icon ml-4">
+                        </div>
+                            <p id="temp1">Temp:</p>
+                            <p id="hum1">Humidity:</p>
                     </div>
                     <div class="weekday ml-5 rounded bg-primary text-white px-3 py-2">
-                        <h1 class="weekday-date">Date</h1>
-                        <p id="temp2">Temp:</p>
-                        <p id="hum2">Humidity:</p>
+                        <div class="city-header d-flex flex-row">
+                            <h1 id="date-two" class="date">Date</h1>
+                            <img id="icon-two" class="icon ml-4">
+                        </div>
+                            <p id="temp2">Temp:</p>
+                            <p id="hum2">Humidity:</p>
                     </div>
                     <div class="weekday ml-5 rounded bg-primary text-white px-3 py-2">
-                        <h1 class="weekday-date">Date</h1>
-                        <p id="temp3">Temp:</p>
-                        <p id="hum3">Humidity:</p>
+                        <div class="city-header d-flex flex-row">
+                            <h1 id="date-three" class="date">Date</h1>
+                            <img id="icon-three" class="icon ml-4">
+                        </div>
+                            <p id="temp3">Temp:</p>
+                            <p id="hum3">Humidity:</p>
                     </div>
                     <div class="weekday ml-5 rounded bg-primary text-white px-3 py-2">
-                        <h1 class="weekday-date">Date</h1>
-                        <p id="temp4">Temp:</p>
-                        <p id="hum4">Humidity:</p>
+                        <div class="city-header d-flex flex-row">
+                            <h1 id="date-four" class="date">Date</h1>
+                            <img id="icon-four" class="icon ml-4">
+                        </div>
+                            <p id="temp4">Temp:</p>
+                            <p id="hum4">Humidity:</p>
                     </div>
                     <div class="weekday ml-5 rounded bg-primary text-white px-3 py-2">
-                        <h1 class="weekday-date">Date</h1>
-                        <p id="temp5">Temp:</p>
-                        <p id="hum5">Humidity:</p>
+                        <div class="city-header d-flex flex-row">
+                            <h1 id="date-five" class="date">Date</h1>
+                            <img id="icon-five" class="icon ml-4">
+                        </div>
+                            <p id="temp5">Temp:</p>
+                            <p id="hum5">Humidity:</p>
                     </div>
                 </div>
             </section>   

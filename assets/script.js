@@ -18,7 +18,7 @@ var citySearch = $('#citySearch');
 var search = [];
 
 searchButton.click(function createSearch(event) {
-    event.preventDefault();
+    // event.preventDefault();
     var submittedSearch = citySearch.submit();
     var userChoice = submittedSearch.val().toLowerCase();
 
@@ -48,11 +48,11 @@ searchButton.click(function createSearch(event) {
        }).then(function(response){
            console.log(response);
            //Temp conversion
-           var tempFah = ((response.main.temp - 273) * 9 / 5 + 32).toFixed(1);
+           var tempFah = ((response.main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
 
            //Display info to page
             $('#current-city').text(response.name); //use moment.js for date
-            $('#icon').text(response.weather.icon);  //Find a way to display icon
+            $('#current-icon').attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
             $('#tempToday').text("Temperature: " + tempFah + " ℉");
             $('#humToday').text("Humidity: " + response.main.humidity + "%");
             $('#wind-speed').text("Wind Speed: " + response.wind.speed + " MPH");
@@ -126,39 +126,39 @@ function displayUVInfo() {
         }).then(function(response){
             console.log(response);
             //Temp conversions
-            var tempFah1 = ((response.list[4].main.temp - 273) * 9 / 5 + 32).toFixed(1);
-            var tempFah2 = ((response.list[12].main.temp - 273) * 9 / 5 + 32).toFixed(1);
-            var tempFah3 = ((response.list[20].main.temp - 273) * 9 / 5 + 32).toFixed(1);
-            var tempFah4 = ((response.list[28].main.temp - 273) * 9 / 5 + 32).toFixed(1);
-            var tempFah5 = ((response.list[36].main.temp - 273) * 9 / 5 + 32).toFixed(1);
+            var tempFah1 = ((response.list[4].main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
+            var tempFah2 = ((response.list[12].main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
+            var tempFah3 = ((response.list[20].main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
+            var tempFah4 = ((response.list[28].main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
+            var tempFah5 = ((response.list[36].main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
 
             //Day 1
             //use moment.js for date
-             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#icon-one').attr("src", "https://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png");
              $('#temp1').text("Temp: " + tempFah1 + " ℉");
              $('#hum1').text("Humidity: " + response.list[4].main.humidity + "%");
             
             //Day 2
             //use moment.js for date
-             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#icon-two').attr("src", "https://openweathermap.org/img/w/" + response.list[12].weather[0].icon + ".png");
              $('#temp2').text("Temp: " + tempFah2 + " ℉");
              $('#hum2').text("Humidity: " + response.list[12].main.humidity + "%");
              
              //Day 3
              //use moment.js for date
-             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#icon-three').attr("src", "https://openweathermap.org/img/w/" + response.list[20].weather[0].icon + ".png");
              $('#temp3').text("Temp: " + tempFah3 + " ℉");
              $('#hum3').text("Humidity: " + response.list[20].main.humidity + "%");
              
              //Day 4
              //use moment.js for date
-             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#icon-four').attr("src", "https://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png");
              $('#temp4').text("Temp: " + tempFah4 + " ℉");
              $('#hum4').text("Humidity: " + response.list[28].main.humidity + "%");
              
              //Day 5
              //use moment.js for date
-             // $('#icon').text(response.weather.icon);  Find a way to display icon
+             $('#icon-five').attr("src", "https://openweathermap.org/img/w/" + response.list[36].weather[0].icon + ".png");
              $('#temp5').text("Temp: " + tempFah5 + " ℉");
              $('#hum5').text("Humidity: " + response.list[36].main.humidity + "%");
           }) 

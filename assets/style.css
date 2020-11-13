@@ -6,7 +6,11 @@
     font-size: 25px;
 }
 
-.weekday-date {
+#current-date {
+    font-size: 25px; 
+}
+
+.date {
     font-size: 18px;
 }
 
