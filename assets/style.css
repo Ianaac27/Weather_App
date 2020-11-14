@@ -24,8 +24,7 @@ p {
 
 .searched-city {
     list-style: none;
-    background-color: rgb(192, 191, 191);
-    color: white;
+    color: black;
     padding: 5px;
     padding-left: 5px;
     border: rgb(136, 136, 136);

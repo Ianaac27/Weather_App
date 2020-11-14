@@ -26,8 +26,8 @@ searchButton.click(function createSearch(event) {
     search.push(userChoice);
 
     //Adding search to search history
-    var searchedCity = $('<li id=' + citySearch.val() + '>').addClass('searched-city').text(citySearch.val());
-    $('#cityHistory').prepend(searchedCity);
+    // var searchedCity = $('<li id=' + citySearch.val() + '>').addClass('searched-city').text(citySearch.val());
+    // $('#cityHistory').prepend(searchedCity);
 
     // localStorage.setItem('searchedCity', searchedCity);
 
@@ -36,21 +36,60 @@ searchButton.click(function createSearch(event) {
     displayCurrentInfo();
     displayUVInfo();
     displayWeeklyForecast();
+     displayHistoryInfo()
  });
 
-//  $('.searched-city').click(function searchHistoryFunction(event) {
-//     event.preventDefault();
-//     buttonName = $('.searched-city'.val());
-//     search.push(buttonName);
+  function displayHistoryInfo() {
 
-//     console.log(searchHistoryFunction());
+     for (i = 0; i < search.length; i++) { 
+       var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
+       var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+ search[i] +"&appid=" + APIKey;
+ 
+      console.log(queryURL);
+ 
+         $.ajax({
+             url: queryURL,
+             method: "GET"
+         }).then(function(response){
+             console.log(response);
 
-//     displayCurrentInfo();
-//     displayUVInfo();
-//     displayWeeklyForecast();
+             $("#city-one").text(search[0]);
+             $("#city-two").text(search[1]);
+             $("#city-three").text(search[2]);
+             $("#city-four").text(search[3]);
+             $("#city-five").text(search[4]);
+             $("#city-six").text(search[5]);
+             $("#city-seven").text(search[6]);
+             $("#city-eight").text(search[7]);
+             $("#city-nine").text(search[8]);
+             $("#city-ten").text(search[9]);
+            
+     localStorage.setItem('search1', search[0]);
+     localStorage.setItem('search2', search[1]);
+     localStorage.setItem('search3', search[2]);
+     localStorage.setItem('search4', search[3]);
+     localStorage.setItem('search5', search[4]);
+     localStorage.setItem('search6', search[5]);
+     localStorage.setItem('search7', search[6]);
+     localStorage.setItem('search8', search[7]);
+     localStorage.setItem('search9', search[8]);
+     localStorage.setItem('search10', search[9]);
+    
+     }) 
+ }
+ }
 
-//     console.log(searchHistoryFunction());
-//  });
+ $('.searched-city').click(function searchHistoryFunction(event) {
+    event.preventDefault();
+    buttonName = $('#' + citySearch.val() + ''.val());
+    search.push(buttonName);
+
+    displayCurrentInfo();
+    displayUVInfo();
+    displayWeeklyForecast();
+
+    console.log(searchHistoryFunction());
+ });
 
 
 //Display current information based on search
@@ -228,6 +267,28 @@ function displayUVInfo() {
 //Get Local Storage
    window.onload = function() {
     
+    //Search History
+    var getSearch1 = localStorage.setItem('search1');
+    $("#city-one").text(getSearch1);
+    var getSearch2 =localStorage.setItem('search2');
+    $("#city-two").text(getSearch2);
+    var getSearch3 =localStorage.setItem('search3');
+    $("#city-three").text(getSearch3);
+    var getSearch4 =localStorage.setItem('search4');
+    $("#city-four").text(getSearch4);
+    var getSearch5 =localStorage.setItem('search5');
+    $("#city-five").text(getSearch5);
+    var getSearch6 =localStorage.setItem('search6');
+    $("#city-six").text(getSearch6);
+    var getSearch7 =localStorage.setItem('search7');
+    $("#city-seven").text(getSearch7);
+    var getSearch8 =localStorage.setItem('search8');
+    $("#city-eight").text(getSearch8);
+    var getSearch9 =localStorage.setItem('search9');
+    $("#city-nine").text(getSearch9);
+    var getSearch10 =localStorage.setItem('search10');
+    $("#city-ten").text(getSearch10);
+
     //Get current info
     var getCity = localStorage.getItem('currentCity');
     $('#current-city').text(getCity);
