@@ -26,10 +26,10 @@ searchButton.click(function createSearch(event) {
     search.push(userChoice);
 
     //Adding search to search history
-    var searchedCity = $('<li>').addClass('searched-city').text(citySearch.val());
+    var searchedCity = $('<li id=' + citySearch.val() + '>').addClass('searched-city').text(citySearch.val());
     $('#cityHistory').prepend(searchedCity);
 
-    localStorage.setItem('searchedCity', searchedCity);
+    // localStorage.setItem('searchedCity', searchedCity);
 
     console.log(search);
 
@@ -37,6 +37,21 @@ searchButton.click(function createSearch(event) {
     displayUVInfo();
     displayWeeklyForecast();
  });
+
+//  $('.searched-city').click(function searchHistoryFunction(event) {
+//     event.preventDefault();
+//     buttonName = $('.searched-city'.val());
+//     search.push(buttonName);
+
+//     console.log(searchHistoryFunction());
+
+//     displayCurrentInfo();
+//     displayUVInfo();
+//     displayWeeklyForecast();
+
+//     console.log(searchHistoryFunction());
+//  });
+
 
 //Display current information based on search
   function displayCurrentInfo() {
@@ -56,6 +71,8 @@ searchButton.click(function createSearch(event) {
            //Display current date in header
            var currentMoment = moment();
            $("#current-date").text("(" + currentMoment.format('l') + ")");
+           
+           localStorage.setItem('currentDate', currentMoment.format('l'));
 
            //Temp conversion
            var tempFah = ((response.main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
@@ -105,19 +122,15 @@ function displayUVInfo() {
             if (response.value >= 11 ) {
                 $('#uv').addClass("extreme");  
             }
-
             else if (response.value < 11 && response.value >= 8 ) {
                 $('#uv').addClass("very-high");  
             }
-
             else if (response.value < 8 && response.value >= 6 ) {
                 $('#uv').addClass("high");  
             }
-
             else if (response.value < 6 && response.value >= 3 ) {
                 $('#uv').addClass("moderate");  
             }
-
             else {
                 $('#uv').addClass("low");  
             }
@@ -160,6 +173,7 @@ function displayUVInfo() {
              $('#temp1').text("Temp: " + tempFah1 + " ℉");
              $('#hum1').text("Humidity: " + response.list[4].main.humidity + "%");
 
+            localStorage.setItem('date1', currentMoment.add(0, 'days').format('l'));
             localStorage.setItem('icon1', "https://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png");
             localStorage.setItem('temp1', "Temp: " + tempFah1 + " ℉");
             localStorage.setItem('hum1', "Humidity: " + response.list[4].main.humidity + "%");
@@ -170,6 +184,7 @@ function displayUVInfo() {
              $('#temp2').text("Temp: " + tempFah2 + " ℉");
              $('#hum2').text("Humidity: " + response.list[12].main.humidity + "%");
 
+            localStorage.setItem('date2', currentMoment.add(0, 'days').format('l'));
             localStorage.setItem('icon2', "https://openweathermap.org/img/w/" + response.list[12].weather[0].icon + ".png");
             localStorage.setItem('temp2', "Temp: " + tempFah2 + " ℉");
             localStorage.setItem('hum2', "Humidity: " + response.list[12].main.humidity + "%");
@@ -180,6 +195,7 @@ function displayUVInfo() {
              $('#temp3').text("Temp: " + tempFah3 + " ℉");
              $('#hum3').text("Humidity: " + response.list[20].main.humidity + "%");
 
+            localStorage.setItem('date3', currentMoment.add(0, 'days').format('l'));
             localStorage.setItem('icon3', "https://openweathermap.org/img/w/" + response.list[20].weather[0].icon + ".png");
             localStorage.setItem('temp3', "Temp: " + tempFah3 + " ℉");
             localStorage.setItem('hum3', "Humidity: " + response.list[20].main.humidity + "%");
@@ -190,6 +206,7 @@ function displayUVInfo() {
              $('#temp4').text("Temp: " + tempFah4 + " ℉");
              $('#hum4').text("Humidity: " + response.list[28].main.humidity + "%");
 
+            localStorage.setItem('date4', currentMoment.add(0, 'days').format('l'));
             localStorage.setItem('icon4', "https://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png");
             localStorage.setItem('temp4', "Temp: " + tempFah4 + " ℉");
             localStorage.setItem('hum4', "Humidity: " + response.list[28].main.humidity + "%");
@@ -200,6 +217,7 @@ function displayUVInfo() {
              $('#temp5').text("Temp: " + tempFah5 + " ℉");
              $('#hum5').text("Humidity: " + response.list[36].main.humidity + "%");
 
+            localStorage.setItem('date5', currentMoment.add(0, 'days').format('l'));
             localStorage.setItem('icon5', "https://openweathermap.org/img/w/" + response.list[36].weather[0].icon + ".png");
             localStorage.setItem('temp5', "Temp: " + tempFah5 + " ℉");
             localStorage.setItem('hum5', "Humidity: " + response.list[36].main.humidity + "%");
@@ -213,6 +231,8 @@ function displayUVInfo() {
     //Get current info
     var getCity = localStorage.getItem('currentCity');
     $('#current-city').text(getCity);
+    var getDate = localStorage.getItem('currentDate');
+    $("#current-date").text(getDate);
     var getIcon = localStorage.getItem('currentIcon');
     $('#current-icon').attr("src", getIcon);
     var getTemp = localStorage.getItem('tempToday');
@@ -243,6 +263,8 @@ function displayUVInfo() {
 
     //Get Forecast
     //Day 1
+    var getDate1 = localStorage.getItem('date1');
+    $("#date-one").text(getDate1);
     var getIcon1 = localStorage.getItem('icon1');
     $('#icon-one').attr("src", getIcon1);
     var getTemp1 = localStorage.getItem('temp1');
@@ -251,6 +273,8 @@ function displayUVInfo() {
     $('#hum1').text(getHum1);
 
     //Day 2
+    var getDate2 = localStorage.getItem('date2');
+    $("#date-two").text(getDate2);
     var getIcon2 = localStorage.getItem('icon2');
     $('#icon-two').attr("src", getIcon2);
     var getTemp2 = localStorage.getItem('temp2');
@@ -259,6 +283,8 @@ function displayUVInfo() {
     $('#hum2').text(getHum2);
 
     //Day 3
+    var getDate3 = localStorage.getItem('date3');
+    $("#date-three").text(getDate3);
     var getIcon3 = localStorage.getItem('icon3');
     $('#icon-three').attr("src", getIcon3);
     var getTemp3 = localStorage.getItem('temp3');
@@ -267,6 +293,8 @@ function displayUVInfo() {
     $('#hum3').text(getHum3);
 
     //Day 4
+    var getDate4 = localStorage.getItem('date4');
+    $("#date-four").text(getDate4);
     var getIcon4 = localStorage.getItem('icon4');
     $('#icon-four').attr("src", getIcon4);
     var getTemp4 = localStorage.getItem('temp4');
@@ -275,6 +303,8 @@ function displayUVInfo() {
     $('#hum4').text(getHum4);
 
     //Day 5
+    var getDate5 = localStorage.getItem('date5');
+    $("#date-five").text(getDate5);
     var getIcon5 = localStorage.getItem('icon5');
     $('#icon-five').attr("src", getIcon5);
     var getTemp5 = localStorage.getItem('temp5');
