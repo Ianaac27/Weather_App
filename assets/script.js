@@ -1,19 +1,3 @@
-// GIVEN a weather dashboard with form inputs
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history----------- CHECK
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index--------CHECK
-// WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity-----------------CHECK
-// WHEN I open the weather dashboard
-// THEN I am presented with the last searched city forecast-----------------------------Check 
-// WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city----------------------CHECK
-
-                                                            // Left to do
-// WHEN I view the UV index
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe---------------------- HALF
-
 //=================================================Search button functions====================================================
 var searchButton = $('#buttonSearch');
 var citySearch = $('#citySearch');
@@ -39,7 +23,6 @@ searchButton.click(function createSearch(event) {
 //Adding search to search history
 var searchedCity = $('<button>').addClass('searched-city').attr('data-city', citySearch.val()).text(citySearch.val().toUpperCase()); 
     $('#cityHistory').prepend(searchedCity);
-    localStorage.setItem('historyButtons', searchedCity);
 
 //Search history buttons
     $('.searched-city').click(function () {
@@ -119,20 +102,14 @@ function displayUVInfo() {
         $('#uv').text("UV Index: " + response.value);
 
         //Colors based on UV Index Scale
-        if (response.value >= 11 ) {
-            $('#uv').addClass("extreme");  
+        if (response.value > 7) {
+            $('#uv').addClass('bg-danger text-white rounded')
         }
-        else if (response.value < 11 && response.value >= 8 ) {
-            $('#uv').addClass("very-high");  
+        else if (response.value > 3 && response.value <= 7) {
+            $('#uv').addClass('bg-warning text-white rounded')
         }
-        else if (response.value < 8 && response.value >= 6 ) {
-            $('#uv').addClass("high");  
-        }
-        else if (response.value < 6 && response.value >= 3 ) {
-            $('#uv').addClass("moderate");  
-        }
-        else {
-            $('#uv').addClass("low");  
+        else if (response.value <= 3) {
+            $('#uv').addClass('bg-success text-white rounded')
         }
 
         localStorage.setItem('UV', "UV Index: " + response.value);
@@ -287,25 +264,18 @@ function UVInfoHistory() {
         }).then(function(response){
             console.log(response);
             $('#uv').text("UV Index: " + response.value);
+            localStorage.setItem('UV', "UV Index: " + response.value);
 
             //Colors based on UV Index Scale
-            if (response.value >= 11 ) {
-                $('#uv').addClass("extreme");  
+            if (response.value > 7) {
+                $('#uv').addClass('bg-danger text-white p-1 rounded')
             }
-            else if (response.value < 11 && response.value >= 8 ) {
-                $('#uv').addClass("very-high");  
+            else if (response.value > 3 && response.value <= 7) {
+                $('#uv').addClass('bg-warning text-white p-1 rounded')
             }
-            else if (response.value < 8 && response.value >= 6 ) {
-                $('#uv').addClass("high");  
+            else if (response.value <= 3) {
+                $('#uv').addClass('bg-success text-white p-1 rounded')
             }
-            else if (response.value < 6 && response.value >= 3 ) {
-                $('#uv').addClass("moderate");  
-            }
-            else {
-                $('#uv').addClass("low");  
-            }
-
-            localStorage.setItem('UV', "UV Index: " + response.value);
             })
         })
     }
@@ -397,6 +367,7 @@ function weeklyForecastHistory() {
 //Get Local Storage
    window.onload = function() {
 
+//Get most recent search history button
    var cityName = localStorage.getItem('cityName');
    var searchedCity = $('<button>').addClass('searched-city').attr('data-city', cityName).text(cityName.toUpperCase()); 
    $('#cityHistory').prepend(searchedCity);
@@ -416,23 +387,6 @@ function weeklyForecastHistory() {
     $('#wind-speed').text(getWind);
     var getUV = localStorage.getItem('UV');
     $('#uv').text(getUV);
-    
-//Colors based on UV Index Scale
-    if ( getUV >= 11 ) {
-        $('#uv').addClass("extreme");  
-    }
-    else if ( getUV < 11 && getUV >= 8 ) {
-        $('#uv').addClass("very-high");  
-    }
-    else if ( getUV < 8 && getUV >= 6 ) {
-        $('#uv').addClass("high");  
-    }
-    else if ( getUV < 6 && getUV >= 3 ) {
-        $('#uv').addClass("moderate");  
-    }
-    else {
-        $('#uv').addClass("low");  
-    }
 
 //Get Forecast
 //Day 1
@@ -484,10 +438,4 @@ function weeklyForecastHistory() {
     $('#temp5').text(getTemp5);
     var getHum5 = localStorage.getItem('hum5');
     $('#hum5').text(getHum5);
-}
-
-//Save search buttons
-function saveButtons() {
-   var str = JSON.stringify()
-
 }
