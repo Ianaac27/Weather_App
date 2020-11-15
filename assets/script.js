@@ -7,14 +7,13 @@
 // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity-----------------CHECK
 // WHEN I open the weather dashboard
 // THEN I am presented with the last searched city forecast-----------------------------Check 
+// WHEN I click on a city in the search history
+// THEN I am again presented with current and future conditions for that city----------------------CHECK
 
                                                             // Left to do
 // WHEN I view the UV index
 // THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe---------------------- HALF
-// WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city----------------------NOT YET
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //=================================================Search button functions====================================================
 var searchButton = $('#buttonSearch');
 var citySearch = $('#citySearch');
@@ -25,9 +24,8 @@ searchButton.click(function createSearch(event) {
     event.preventDefault();
     var submittedSearch = citySearch.submit();
     var userChoice = submittedSearch.val().toLowerCase();
-
     search.push(userChoice);
-
+ 
     for (i = 0; i < search.length; i++) { 
         var city = search[i]
         localStorage.setItem('cityName', city);
@@ -39,9 +37,9 @@ searchButton.click(function createSearch(event) {
     }
 
 //Adding search to search history
-var searchedCity = $('<button data-city= ' + citySearch.val() + '>').addClass('searched-city').text(citySearch.val().toUpperCase()); 
+var searchedCity = $('<button>').addClass('searched-city').attr('data-city', citySearch.val()).text(citySearch.val().toUpperCase()); 
     $('#cityHistory').prepend(searchedCity);
-    // searchedCity.data('city', citySearch.val());
+    localStorage.setItem('historyButtons', searchedCity);
 
 //Search history buttons
     $('.searched-city').click(function () {
@@ -226,17 +224,6 @@ function displayWeeklyForecast() {
 
 //=================================================Search history button functions====================================================
 
-// //Search history buttons
-// $('.searched-city').click(function () {
-//     var city = $(this).data('city').toLowerCase();
-//     localStorage.setItem('historyName', city);
-//     console.log(city);
-
-//     currentInfoHistory();
-//     UVInfoHistory();
-//     weeklyForecastHistory();
-//   });
-
 //Display current information
 function currentInfoHistory() {
 
@@ -410,6 +397,10 @@ function weeklyForecastHistory() {
 //Get Local Storage
    window.onload = function() {
 
+   var cityName = localStorage.getItem('cityName');
+   var searchedCity = $('<button>').addClass('searched-city').attr('data-city', cityName).text(cityName.toUpperCase()); 
+   $('#cityHistory').prepend(searchedCity);
+
 //Get current info
     var getCity = localStorage.getItem('currentCity');
     $('#current-city').text(getCity);
@@ -493,4 +484,10 @@ function weeklyForecastHistory() {
     $('#temp5').text(getTemp5);
     var getHum5 = localStorage.getItem('hum5');
     $('#hum5').text(getHum5);
+}
+
+//Save search buttons
+function saveButtons() {
+   var str = JSON.stringify()
+
 }
