@@ -42,7 +42,7 @@ var searchedCity = $('<button>').addClass('searched-city').attr('data-city', cit
 
     var city = localStorage.getItem('cityName');
     var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=" + APIKey;
 
     console.log(queryURL);
 
@@ -82,7 +82,7 @@ function displayUVInfo() {
 
     var city = localStorage.getItem('cityName');
     var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=" + APIKey;
 
     $.ajax({
         url: queryURL,
@@ -90,7 +90,7 @@ function displayUVInfo() {
     }).then(function(response){
         console.log(response);
 
-    var queryURLUV = "http://api.openweathermap.org/data/2.5/uvi?lat=" + (response.coord.lat) +"&lon=" + (response.coord.lon) + "&appid=" + APIKey;
+    var queryURLUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + (response.coord.lat) +"&lon=" + (response.coord.lon) + "&appid=" + APIKey;
 
     console.log(queryURLUV);
 
@@ -122,7 +122,7 @@ function displayWeeklyForecast() {
 
     var city = localStorage.getItem('cityName');
     var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
-    var queryURLF = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + APIKey;
+    var queryURLF = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + APIKey;
 
     console.log(queryURLF);
 
@@ -206,7 +206,7 @@ function currentInfoHistory() {
 
     var city = localStorage.getItem('historyName');
     var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=" + APIKey;
 
     console.log(queryURL);
 
@@ -246,7 +246,7 @@ function UVInfoHistory() {
 
     var city = localStorage.getItem('historyName');
     var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=" + APIKey;
 
     $.ajax({
         url: queryURL,
@@ -254,7 +254,7 @@ function UVInfoHistory() {
     }).then(function(response){
         console.log(response);
 
-        var queryURLUV = "http://api.openweathermap.org/data/2.5/uvi?lat=" + (response.coord.lat) +"&lon=" + (response.coord.lon) + "&appid=" + APIKey;
+        var queryURLUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + (response.coord.lat) +"&lon=" + (response.coord.lon) + "&appid=" + APIKey;
 
         console.log(queryURLUV);
 
@@ -285,7 +285,7 @@ function weeklyForecastHistory() {
 
     var city = localStorage.getItem('historyName');
     var APIKey = "d5866c2d5c0e76c2380895bf8574fe70";
-    var queryURLF = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + APIKey;
+    var queryURLF = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + APIKey;
 
     console.log(queryURLF);
 
