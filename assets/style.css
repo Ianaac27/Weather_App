@@ -1,5 +1,19 @@
+#wrapper {
+    display: flex;
+    margin-left: 3em;
+    margin-right: 3em;
+}
+
+.container {
+    margin-left: 1em;
+}
+
 #search-city {
     font-size: 20px;
+}
+
+.city-header {
+    display: flex;
 }
 
 #current-city {
@@ -10,8 +24,20 @@
     font-size: 25px; 
 }
 
+#current-icon {
+    width: 4.5em;
+}
+
 .date {
     font-size: 18px;
+}
+
+#week {
+    display: flex;
+}
+
+.weekday-next {
+    margin-left: 1em;
 }
 
 #week-header {
@@ -53,4 +79,71 @@ p {
 .bg-success {
     width: 100px;
     padding-left: 6px;
+}
+
+@media screen and (max-width:1025px){
+    #wrapper {
+        flex-direction: column;
+        justify-content: center;
+        /* margin-left: 1em;
+        margin-right: 1em; */
+    }
+
+    #week {
+        flex-direction: column;
+    }
+
+    .weekday {
+        margin-left: 0em;
+        margin-bottom: 1em;
+    }
+
+    .weekday-next {
+        margin-left: 0em;
+        margin-bottom: 1em;
+    }
+
+    #cityInfo {
+        margin-top: 1em;
+    }
+
+    #searchArea {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .searched-city {
+        padding: 0px;
+        padding-left: 0px;
+        margin-right: 0px;
+        width: 120px;
+    }
+
+    #current-date, #current-city {
+        font-size: 15px; 
+    }
+
+    .city-header {
+        flex-direction: column;
+    }
+
+    #title-date {
+        display: flex;
+    }
+
+    #current-icon, .icon {
+        width: 3em;
+    }
+
+    .container {
+        margin-left: 0em;
+    }
+}
+
+@media screen and (max-width:300px){
+    #title-date {
+        flex-direction: column;
+    }
 }
